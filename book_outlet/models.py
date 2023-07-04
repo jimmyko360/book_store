@@ -5,3 +5,6 @@ class Book(models.Model):
     rating = models.IntegerField()
     # id = models.AutoField()
     # ^ Django will already add this for you
+
+    def __str__(self):
+        return f"{self.title} ({self.rating})"
