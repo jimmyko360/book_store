@@ -12,10 +12,14 @@
   <ul>
     {% for book in book_list %}
       <li>
-        <a href="{% url "book_by_id" book.id %}">
+        <a href="{{ book.get_absolute_url }}">
           {{ book.title }} - {{ book.author }} (Rating: {{ book.rating }})
         </a>
       </li>
     {% endfor %}
   </ul>
 {% endblock %}
+
+{% comment %}
+  here, we can use get_absolute_url because we have overridden that to call our book_by_id endpoint which returns book_detail.html
+{% endcomment %}
