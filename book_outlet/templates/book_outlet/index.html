@@ -6,8 +6,12 @@
 
 {% block content %}
   <h1>
-    All Books
+    All Books ({{ book_count }})
   </h1>
+
+  <h3>
+    Average Rating: {{ average_rating.rating__avg }}
+  </h3>
 
   <ul>
     {% for book in book_list %}
