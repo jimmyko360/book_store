@@ -10,10 +10,10 @@ class Book(models.Model):
     # ^ Django will already add this for you
     author = models.CharField(null=True, max_length=255)
     is_bestselling = models.BooleanField(default=False)
-    slug = models.SlugField(default="", null=False)
+    slug = models.SlugField(default="", null=False, db_index=True)
 
     def get_absolute_url(self):
-        return reverse("book_by_id", args=[self.id])
+        return reverse("book_detail", args=[self.slug])
     # ^this is a native model method that we override
 
     def save(self, *args, **kwargs):
