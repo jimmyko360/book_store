@@ -3,12 +3,16 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from django.utils.text import slugify
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
 class Book(models.Model):
     title = models.CharField(max_length=255)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     # id = models.AutoField()
     # ^ Django will already add this for you
-    author = models.CharField(null=True, max_length=255)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(
         default="",
