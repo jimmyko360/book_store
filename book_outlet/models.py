@@ -12,11 +12,13 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     rating = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)])
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
     # id = models.AutoField()
     # ^ Django will already add this for you
     author = models.ForeignKey(
-        Author, on_delete=models.CASCADE, null=True, related_name="books")
+        Author, on_delete=models.CASCADE, null=True, related_name="books"
+    )
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(
         default="",
@@ -24,11 +26,12 @@ class Book(models.Model):
         # blank=True,
         # editable=False,
         null=False,
-        db_index=True
+        db_index=True,
     )
 
     def get_absolute_url(self):
         return reverse("book_detail", args=[self.slug])
+
     # ^this is a native model method that we override
 
     # def save(self, *args, **kwargs):
