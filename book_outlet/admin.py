@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Book, Address
+from .models import Author, Book, Address, Country
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -17,3 +17,4 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author)
 admin.site.register(Address)
+admin.site.register(Country)
